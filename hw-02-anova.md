@@ -1,4 +1,4 @@
-HW 02: ANOVA
+HW 02: Analysis of Variance
 ================
 Your Name
 2019-09-17

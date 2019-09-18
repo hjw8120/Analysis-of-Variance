@@ -1,5 +1,5 @@
 ---
-title: "HW 02: ANOVA"
+title: "HW 02: Analysis of Variance"
 author: "Your Name"
 date: "`r Sys.Date()`"
 output: github_document
