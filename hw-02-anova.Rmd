@@ -28,25 +28,50 @@ dfw <- 125 # degrees of freedom within (residuals)
 dft <- 130 # total degress of freedom
 ssw <- 6.486 # sum of squares within (residuals)
 sst <- 19.386 # total sum of squares
+dfb <- 5 # degrees of freedom between (model)
+ssb <- 12.9 # sum of squares between (model)
+msb <- 2.58  # mean square between
+msw <- 0.0519  # mean square within (residuals)
+f_stat <- 49.722  #F -statistic 
+p_val <- 1-pf(49.722, 5, 125)  # F-Statistic, DF1, DF2
 ```
 
-(Type the response to Question 1 here.)
+```{r anova-table}
+source <- c("Between Groups", "Within Groups", "Total")
+df <- c(dfb, dfw,dft)
+ss <- c(ssb, ssw, sst)
+ms <- c(msb, msw,NA)  
+f.statistic <- c(f_stat, NA, NA)
+p.value <- c(p_val,NA,NA)
+
+# combine the columns to make a table called "anova"
+anova <- bind_cols("Source"=source,"df"=df,"Sum of squares"=ss,"Mean square"=ms,"F-statistic"=f.statistic,"p-value"=p.value)
+
+# print the table 
+kable(anova) 
+```
+
 
 ### Question 2
 
-
+131 observations are in the dataset. DF total (130) is n-1, so n=131. 
+6 groups are being compared. DF between (5) is K-1, so K=6.
 
 ### Question 3
 
-
+The estimate of σ2 is MSW. The mean square within is 0.0519, and it measures the variance within each group.
 
 ### Question 4
 
+The null hypothesis states there is no statistically significant difference between the means in across the 6 groups. The alternative hypothesis states there is at least one mean in the 6 groups that is not equal to the others.
 
+H0:μ1=μ2=μ3=μ4=μ5=μ6
+
+Ha:At least one μ is not equal to the others
 
 ### Question 5
 
-
+The p-value of 0 is less than the alpha level 0.05, therefore we reject the null hypothesis, in favor of the alternative hypothesis. There is at least one mean in the 6 groups that is not equal to the others.
 
 ## Part 2: Data Analysis
 
