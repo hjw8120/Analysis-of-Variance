@@ -1,7 +1,7 @@
 HW 02: Analysis of Variance
 ================
 Your Name
-2019-09-23
+2019-09-25
 
 ## Load packages
 
@@ -74,9 +74,12 @@ Ha: At least one μ is not equal to the others
 
 ### Question 5
 
-The p-value of 0 is less than the alpha level 0.05, therefore we reject
-the null hypothesis, in favor of the alternative hypothesis. There is at
-least one mean in the 6 groups that is not equal to the others.
+The F-statistic of 49.722 gives a p-value of 0. This means given the
+null hypothesis is true, there is a 0% chance of getting a test
+statistic as extreme as 49.722. The p-value of 0 is less than the alpha
+level 0.05, therefore we reject the null hypothesis, in favor of the
+alternative hypothesis. Thus, there is at least one mean in the 6 groups
+that is statistically significantly different than the others.
 
 ## Part 2: Data Analysis
 
@@ -93,7 +96,7 @@ group (control, friend present, pet
 present).
 
 ``` r
-ggplot(data = stress_data, mapping = aes(y = heart_rate, x = group)) + geom_boxplot() + labs(title = "Distribution of Heart Rate by Group", x = "Group", y = "Heart Rate")
+ggplot(data = stress_data, mapping = aes(y = heart_rate, x = group)) + geom_boxplot() + labs(title = "Distribution of Heart Rate by Group", x = "Group", y = "Heart Rate (BPM)")
 ```
 
 ![](hw-02-anova_files/figure-gfm/boxplot-1.png)<!-- -->
@@ -104,7 +107,7 @@ Create density plot to show distribution of heart rate by group.
 ggplot(data = stress_data, aes(x = heart_rate, fill = group)) +
   geom_density(alpha = 0.5) + 
   labs(title = "Heart Rate Distribution by Group", 
-       x = "Heart Rate", 
+       x = "Heart Rate (BPM)", 
        color = "Group")
 ```
 
@@ -144,9 +147,9 @@ have no influence on each other.
 The null hypothesis is there is no statistically significant difference
 in mean heart rate between the groups of women. The alternative
 hypothesis is there is at least one mean heart rate that is
-statistically significantly different thatn the others.
+statistically significantly different than the others.
 
-H0: μ1=μ2=μ3
+H0: μC=μF=μP
 
 Ha: At least one μ is not equal to the others
 
@@ -177,7 +180,7 @@ n.groups <- stress_data %>%
   distinct(group) %>% 
   count()
 
-crit.val <- qt(0.975, (nrow(stress_data)-n.groups$n))
+crit.val <- qt(0.991667, (nrow(stress_data)-n.groups$n))
 sigma <- sqrt(84.79285)
 
 conf.intervals <- stress_data %>%
@@ -224,12 +227,12 @@ when completing difficult tasks, women with a pet present tend to have
 lower stress levels than women who do not, and women with a close friend
 present tend to have higher stress levels.
 
-However, we cannot conclude that pets or close friends cause different
-stress levels. Normality is not satisfied so the assumptions for ANOVA
-testing are not satisfied to make a definitive conclusion. There also
-may be other confounding variables affecting stress levels in these
-women. In addition, the sample size of only 45 women is very small to
-make any conclusions.
+However, we cannot conclude that the certain conditions of having a pet
+or close friend present cause different stress levels. Normality is not
+satisfied so the assumptions for ANOVA testing are not satisfied to make
+a definitive conclusion. There also may be other confounding variables
+affecting stress levels in these women. In addition, the sample size of
+only 45 women is very small to make any general conclusions.
 
 ### Overall (Do not delete\!)
 
