@@ -163,9 +163,11 @@ tidy(heartrate_anova) %>% kable(format = "markdown", digits = 5)
 | Residuals | 42 | 3561.299 |   84.79285 |        NA |      NA |
 
 The p-value of 0.00002 is less than the alpha level 0.05, so we reject
-the null hypothesis, in favor of the alternative hypothesis. Thus, there
+the null hypothesis, in favor of the alternative hypothesis that there
 is at least one mean heart rate that is statistically significantly
-different than the others.
+different than the others. Thus, there is evidence of an association
+between the presence of a friend or pet and stress level when completing
+difficult tasks.
 
 The estimate of σ2 is the mean square within (MSW). The MSW is 84.793,
 and it measures the variance within each group.
@@ -186,11 +188,16 @@ conf.intervals <- stress_data %>%
 ggplot(data=conf.intervals,aes(x=group,y=mean)) +
   geom_point() + 
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) + 
-  labs(title="95% Confidence Interval for the Mean Value of Heart Rate", x = "Heart Rate", y = "Group", subtitle="by Group") +
+  labs(title="95% Confidence Interval for the Mean Value of Heart Rate", x = "Group", y = "Heart Rate", subtitle="by Group") +
   coord_flip()
 ```
 
 ![](hw-02-anova_files/figure-gfm/intervals-1.png)<!-- -->
+
+According to the confidence intervals for mean heart rate between
+groups, women with a friend present tended to have higher heart rates
+than the control group, and women with a pet present tended to have
+lower heart rates than the control group.
 
 ``` r
 library(pairwiseCI)
@@ -208,6 +215,21 @@ pairwiseCI(heart_rate ~ group, data = stress_data, method = "Param.diff", conf.l
     ## P-F  -17.842 -28.0685 -7.616
     ##   
     ## 
+
+The difference in means between ‘friend present’ and ‘pet present’
+groups is the highest.
+
+Due to evidence that a difference in means does exist, we can say that
+when completing difficult tasks, women with a pet present tend to have
+lower stress levels than women who do not, and women with a close friend
+present tend to have higher stress levels.
+
+However, we cannot conclude that pets or close friends cause different
+stress levels. Normality is not satisfied so the assumptions for ANOVA
+testing are not satisfied to make a definitive conclusion. There also
+may be other confounding variables affecting stress levels in these
+women. In addition, the sample size of only 45 women is very small to
+make any conclusions.
 
 ### Overall (Do not delete\!)
 
