@@ -151,7 +151,7 @@ conf.intervals <- stress_data %>%
 ggplot(data=conf.intervals,aes(x=group,y=mean)) +
   geom_point() + 
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) + 
-  labs(title="95% Confidence Interval for the Mean Value of Heart Rate", x = "Group", y = "Heart Rate", subtitle="by Group") +
+  labs(title="95% Confidence Interval for the Mean Value of Heart Rate", x = "Group", y = "Heart Rate (BPM)", subtitle="by Group") +
   coord_flip()
 ```
 
